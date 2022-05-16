@@ -1,0 +1,58 @@
+<div>
+  <form [formGroup]="orderForm" #formDir="ngForm">
+    <div class="form-group">
+      <label>Custumer Name</label>
+      <input type="text" formControlName="custumerName" [ngClass]="{'is-invalid': orderForm.controls['custumerName'].errors && orderForm.controls['custumerName'].touched}" class="form-control">
+    </div>
+
+    <div class="form-group" >
+      <label>Document</label>
+      <input type="text" name="teste" formControlName="custumerDocument" [ngClass]="{'is-invalid': orderForm.controls['custumerDocument'].errors && orderForm.controls['custumerDocument'].touched}" class="form-control" placeholder="CPF" mask="###.###.###-##">
+    </div>        
+
+
+    <div class="form-group">
+      <label>Date</label>
+      <input type="date" formControlName="orderDate" [ngClass]="{'is-invalid': orderForm.controls['orderDate'].errors && orderForm.controls['orderDate'].touched}" class="form-control">
+    </div>       
+
+    <br>
+
+    <div class="form-control">
+      <label>Product</label>
+    </div>
+    <div class="form-control">
+      <select (change)="getQuantity($event)" class="form-control form-select form-select-sm" name="productList" formControlName="productsList">
+        <option>--Select--</option>
+        <option [value]="product.id" *ngFor="let product of productsList">
+          {{product.name}}
+        </option>
+      </select>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <label>Quantity</label>
+      <input type="number" formControlName="orderQuantity" [ngClass]="{'is-invalid': orderForm.controls['orderQuantity'].errors && orderForm.controls['orderQuantity'].touched}" class="form-control">
+      <p *ngIf="quantityProductSelected > 0">
+        <label>Attention! There's only </label> {{quantityProductSelected}} <label> in stock available. </label>
+      </p>
+      <p *ngIf="quantityProductSelected == 0">
+        <label>Attention! There's no stock of this product available! </label>
+      </p>      
+      <small *ngIf="orderForm.controls['orderQuantity'].errors">Quantity can't be 0 or higher than stock</small>
+      <br>
+    </div>   
+    <br>
+    <div class="row">
+      <div class="col-1">
+        <button [disabled]="!orderForm.valid" (click)="saveOrder()" class="btn btn-sm btn-success" >Save </button> 
+      </div>
+      <div class="col-1">
+        <button (click)="clearForm()" class="btn btn-sm btn-danger">Clear</button>
+      </div>
+  </div>      
+  </form>
+
+</div>

@@ -1,0 +1,54 @@
+<main>
+    <form [formGroup]="formSignup">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h1 class="h3 mb-3 fw-normal text-center">Create your account now!</h1>
+      
+      <div class="row justify-content-center">
+        <div class="col-md-2">
+          <div class="form-floating">
+
+          </div>
+        </div>
+      </div>
+  
+      <div class="row justify-content-center">
+        <div class="col-md-2">
+            <label>Full name</label>
+            <input type="email" class="form-control" formControlName="name" name="name" [ngClass]="{'is-invalid': formSignup.controls['name'].errors && formSignup.controls['name'].touched}">
+            
+        </div>
+      </div>
+      <br>
+      <div class="row justify-content-center">
+        <div class="col-md-2">
+            <label>Email address</label>
+            <input type="email" class="form-control" formControlName="email"  placeholder="name@example.com" [ngClass]="{'is-invalid': formSignup.controls['email'].errors && formSignup.controls['email'].touched}">
+        </div>
+      </div>
+      <br>
+      <div class="row justify-content-center">
+        <div class="col-md-2">
+            <label>Password</label>
+            <input type="password" class="form-control" formControlName="password"  placeholder="Password" [ngClass]="{'is-invalid': formSignup.controls['password'].errors && formSignup.controls['password'].touched}">
+        </div>
+      </div>
+      <br>
+
+      <div class="row justify-content-center">
+        <div class="col-md-2 text-center">
+          <div class="checkbox mb-3">
+            <button class="w-100 btn btn-lg btn-dark" (click)="submit()" [disabled]="!formSignup.valid" type="submit">Sign up!</button>            
+            <p class="mt-4 mb-4 text-muted">&copy; 2017–2022</p>
+          </div>
+          Already registered? <a href="/login">Log in!</a>
+          <br>
+          Forgot password? <a href="/login">Reset password!</a>
+        </div>
+      </div>
+  
+    </form>
+  </main>
